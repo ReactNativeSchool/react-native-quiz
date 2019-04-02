@@ -3,7 +3,6 @@ import { StyleSheet, View, StatusBar, SafeAreaView } from "react-native";
 import { H1 } from "../components/Text";
 import { ButtonContainer, Button } from "../components/Button";
 import { AlertOverlay } from "../components/Alert";
-import { QUESTIONS } from "../data/questions";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
 export default class App extends React.Component {
   state = {
     correctCount: 0,
-    totalCount: QUESTIONS.length,
+    totalCount: this.props.navigation.getParam("questions", []).length,
     answered: false,
     answerCorrect: false,
     activeQuestionIndex: 0
@@ -65,14 +64,16 @@ export default class App extends React.Component {
   };
 
   render() {
-    const currentQuestion = QUESTIONS[this.state.activeQuestionIndex];
-    const containerStyles = [
-      styles.container,
-      { backgroundColor: this.props.navigation.getParam("color") }
-    ];
+    const questions = this.props.navigation.getParam("questions", []);
+    const currentQuestion = questions[this.state.activeQuestionIndex];
 
     return (
-      <View style={containerStyles}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: this.props.navigation.getParam("color") }
+        ]}
+      >
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safearea}>
           <View />
