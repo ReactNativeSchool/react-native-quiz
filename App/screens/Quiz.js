@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   },
   safearea: {
     flex: 1,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginTop: 100
   }
 });
 
@@ -47,12 +48,12 @@ export default class App extends React.Component {
 
   nextQuestion = () => {
     this.setState(state => {
-      let nextIndex = state.activeQuestionIndex + 1;
-      let correctCount = state.correctCount;
+      const nextIndex = state.activeQuestionIndex + 1;
+      const correctCount = state.correctCount;
 
       if (nextIndex >= state.totalCount) {
-        nextIndex = 0;
-        correctCount = 0;
+        this.props.navigation.pop();
+        return {};
       }
 
       return {
@@ -74,9 +75,9 @@ export default class App extends React.Component {
           { backgroundColor: this.props.navigation.getParam("color") }
         ]}
       >
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="dark-content" />
         <SafeAreaView style={styles.safearea}>
-          <View />
+          {/* <View /> */}
 
           <View>
             <H1>{currentQuestion.question}</H1>

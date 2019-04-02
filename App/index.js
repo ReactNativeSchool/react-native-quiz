@@ -11,7 +11,11 @@ const MainStack = createStackNavigator({
     }
   },
   Quiz: {
-    screen: Quiz
+    screen: Quiz,
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: navigation.getParam("title"),
+      headerTintColor: navigation.getParam("color")
+    })
   }
 });
 
