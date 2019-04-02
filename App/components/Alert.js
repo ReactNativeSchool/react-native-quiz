@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export const AlertOverlay = ({ correct }) => {
+export const AlertOverlay = ({ correct, visible }) => {
+  if (!visible) return null;
+
   const icon = correct
     ? require("../assets/check.png")
     : require("../assets/close.png");
