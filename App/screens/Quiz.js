@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   safearea: {
     flex: 1,
     justifyContent: "space-between",
-    marginTop: 100
+    marginTop: 100,
+    paddingBottom: 10
   }
 });
 
@@ -75,10 +76,8 @@ export default class App extends React.Component {
           { backgroundColor: this.props.navigation.getParam("color") }
         ]}
       >
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safearea}>
-          {/* <View /> */}
-
           <View>
             <H1>{currentQuestion.question}</H1>
             <ButtonContainer>

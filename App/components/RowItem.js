@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   row: {
     paddingHorizontal: 15,
     paddingVertical: 20
-    // borderBottomWidth: 1
   },
   text: {
     fontSize: 18,

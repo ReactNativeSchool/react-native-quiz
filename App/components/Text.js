@@ -1,17 +1,18 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import React from "react";
+import { Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   base: {
-    color: '#fff',
+    color: "#fff",
     letterSpacing: -0.02,
-    fontWeight: '600',
-    // fontFamily: 'SF Pro Text'?
+    fontWeight: "600"
   },
   h1: {
     fontSize: 25,
-    textAlign: 'center',
-  },
+    textAlign: "center"
+  }
 });
 
-export const H1 = ({ children }) => <Text style={[styles.base, styles.h1]}>{children}</Text>;
+export const H1 = ({ children }) => (
+  <Text style={[styles.base, styles.h1]}>{children}</Text>
+);
