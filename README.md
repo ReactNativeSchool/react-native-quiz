@@ -4,6 +4,9 @@ A simple cross platform (iOS and Android) React Native quiz app.
 
 If you're interested in learning more about React Native be sure to visit [React Native School](https://www.reactnativeschool.com/) for dozens of React Native tutorials!
 
+![Index Screen](./assets/index.png)
+![Quiz Screen](./assets/quiz.png)
+
 ### Installation
 
 - `git clone https://github.com/ReactNativeSchool/react-native-quiz`
