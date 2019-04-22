@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, StatusBar, Text, SafeAreaView } from "react-native";
 
-import TEMP_QUESTIONS from "../data/computers";
 import { Button, ButtonContainer } from "../components/Button";
 import { Alert } from "../components/Alert";
 
@@ -74,7 +73,12 @@ class Quiz extends React.Component {
     const question = questions[this.state.activeQuestionIndex];
 
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: this.props.navigation.getParam("color") }
+        ]}
+      >
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safearea}>
           <View>

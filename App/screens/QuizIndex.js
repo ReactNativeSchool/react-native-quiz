@@ -16,7 +16,8 @@ export default ({ navigation }) => (
       onPress={() =>
         navigation.navigate("Quiz", {
           title: "Space",
-          questions: spaceQuestions
+          questions: spaceQuestions,
+          color: "#36b1f0"
         })
       }
     />
@@ -26,7 +27,8 @@ export default ({ navigation }) => (
       onPress={() =>
         navigation.navigate("Quiz", {
           title: "Westerns",
-          questions: westernsQuestions
+          questions: westernsQuestions,
+          color: "#799496"
         })
       }
     />
@@ -36,7 +38,8 @@ export default ({ navigation }) => (
       onPress={() =>
         navigation.navigate("Quiz", {
           title: "Computers",
-          questions: computerQuestions
+          questions: computerQuestions,
+          color: "#49475B"
         })
       }
     />
