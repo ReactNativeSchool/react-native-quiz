@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet, View, StatusBar, SafeAreaView } from "react-native";
-import { H1 } from "../components/Text";
+import { StyleSheet, View, StatusBar, SafeAreaView, Text } from "react-native";
 import { ButtonContainer, Button } from "../components/Button";
 import { AlertOverlay } from "../components/Alert";
 
@@ -15,6 +14,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 100,
     paddingBottom: 10
+  },
+  text: {
+    color: "#fff",
+    letterSpacing: -0.02,
+    fontWeight: "600",
+    fontSize: 25,
+    textAlign: "center"
   }
 });
 
@@ -79,7 +85,7 @@ export default class App extends React.Component {
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safearea}>
           <View>
-            <H1>{currentQuestion.question}</H1>
+            <Text style={styles.text}>{currentQuestion.question}</Text>
             <ButtonContainer>
               {currentQuestion.answers.map(answer => (
                 <Button
@@ -91,7 +97,9 @@ export default class App extends React.Component {
             </ButtonContainer>
           </View>
 
-          <H1>{`${this.state.correctCount}/${this.state.totalCount}`}</H1>
+          <Text style={styles.text}>
+            {`${this.state.correctCount}/${this.state.totalCount}`}
+          </Text>
         </SafeAreaView>
         <AlertOverlay
           visible={this.state.answered}

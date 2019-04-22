@@ -9,12 +9,12 @@ const questions = [
     ]
   },
   {
-    question: "Which number is 3",
+    question: "How many planets are in the Solar System?",
     answers: [
-      { id: "1", text: "1" },
-      { id: "2", text: "3", correct: true },
-      { id: "3", text: "2" },
-      { id: "4", text: "4" }
+      { id: "1", text: "6" },
+      { id: "2", text: "7" },
+      { id: "3", text: "8", correct: true },
+      { id: "4", text: "9" }
     ]
   }
 ];
