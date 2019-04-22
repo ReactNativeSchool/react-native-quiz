@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 class Quiz extends React.Component {
   state = {
     correctCount: 0,
-    totalCount: TEMP_QUESTIONS.length,
+    totalCount: this.props.navigation.getParam("questions", []).length,
     activeQuestionIndex: 0,
     answered: false,
     answerCorrect: false
@@ -70,7 +70,8 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const question = TEMP_QUESTIONS[this.state.activeQuestionIndex];
+    const questions = this.props.navigation.getParam("questions", []);
+    const question = questions[this.state.activeQuestionIndex];
 
     return (
       <View style={styles.container}>
