@@ -1,8 +1,6 @@
 ## React Native Quiz App
 
-A simple cross platform (iOS and Android) React Native quiz app.
-
-If you're interested in learning more about React Native be sure to visit [React Native School](https://www.reactnativeschool.com/) for dozens of React Native tutorials!
+A simple cross platform (iOS and Android) React Native quiz app. This example was put together for [React Native by Example](https://learn.handlebarlabs.com/p/react-native-by-example-free). Get started learning & mastering React Native for free!
 
 ![Index Screen](./assets/index.png)
 ![Quiz Screen](./assets/quiz.png)
@@ -19,3 +17,5 @@ If you're interested in learning more about React Native be sure to visit [React
 ---
 
 This project was put together to serve as an example to help you in building your own React Native apps. Feel free to download it and tinker with it!
+
+> If you're interested in learning more about React Native be sure to visit [React Native School](https://www.reactnativeschool.com/) for dozens of React Native tutorials!
