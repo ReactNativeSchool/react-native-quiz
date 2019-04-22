@@ -1,8 +1,3 @@
-import React from "react";
-import { View, Text } from "react-native";
+import Quiz from "./screens/Quiz";
 
-export default () => (
-  <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-    <Text>Future home of a quiz app!</Text>
-  </View>
-);
+export default Quiz;
