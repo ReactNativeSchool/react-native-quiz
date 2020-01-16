@@ -71,7 +71,7 @@ class Quiz extends React.Component {
   render() {
     const questions = this.props.navigation.getParam("questions", []);
     const question = questions[this.state.activeQuestionIndex];
-    console.log(question);
+    //   console.log(question);
     if (!_.isEmpty(question)) {
       return (
         <View

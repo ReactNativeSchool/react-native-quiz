@@ -1,7 +1,7 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import QuizIndex from "./screens/QuizIndex";
-import Quiz from "./screens/Quiz";
+import QuizIndex from "../App/screens/QuizIndex";
+import Quiz from "../App/screens/Quiz";
 
 const MainStack = createStackNavigator({
   QuizIndex: {
