@@ -1,27 +1,31 @@
 import React from "react";
-import { View, StyleSheet, StatusBar, Text, SafeAreaView } from "react-native";
-
-import { Button, ButtonContainer } from "../components/Button";
+import { View, StyleSheet, Text } from "react-native";
+import { withNavigation } from "react-navigation";
+import { ButtonView, ButtonContainer } from "../components/Button";
 import { Alert } from "../components/Alert";
 import _ from "lodash";
+import {
+  Body,
+  Title,
+  Container,
+  Header,
+  Content,
+  List,
+  Card,
+  CardItem,
+  Left,
+  Right,
+  Icon,
+  Grid
+} from "native-base";
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#36B1F0",
-    flex: 1,
-    paddingHorizontal: 20
-  },
   text: {
     color: "#fff",
     fontSize: 25,
     textAlign: "center",
     letterSpacing: -0.02,
     fontWeight: "600"
-  },
-  safearea: {
-    flex: 1,
-    marginTop: 100,
-    justifyContent: "space-between"
   }
 });
 
@@ -58,7 +62,9 @@ class Quiz extends React.Component {
     this.setState((state) => {
       const nextIndex = state.activeQuestionIndex + 1;
       if (nextIndex >= state.totalCount) {
-        this.props.navigation.popToTop();
+        this.props.navigation.navigate({
+          routeName: "Result"
+        });
       }
 
       return {
@@ -71,23 +77,33 @@ class Quiz extends React.Component {
   render() {
     const questions = this.props.navigation.getParam("questions", []);
     const question = questions[this.state.activeQuestionIndex];
-    //   console.log(question);
+    console.log(question);
     if (!_.isEmpty(question)) {
       return (
-        <View
-          style={[
-            styles.container,
-            { backgroundColor: this.props.navigation.getParam("color") }
-          ]}
-        >
-          <StatusBar barStyle="light-content" />
-          <SafeAreaView style={styles.safearea}>
+        <Container>
+          <Header>
+            <Left></Left>
+            <Body>
+              <Title>Quiz app</Title>
+            </Body>
+          </Header>
+          <Content>
+            <Alert
+              correct={this.state.answerCorrect}
+              visible={this.state.answered}
+            />
             <View>
-              <Text style={styles.text}>{question.question}</Text>
+              <Card>
+                <CardItem>
+                  <Body>
+                    <Text>{question.question}</Text>
+                  </Body>
+                </CardItem>
+              </Card>
 
               <ButtonContainer>
                 {question.answers.map((answer) => (
-                  <Button
+                  <ButtonView
                     key={answer.id}
                     text={answer.text}
                     onPress={() => this.answer(answer.correct)}
@@ -95,30 +111,32 @@ class Quiz extends React.Component {
                 ))}
               </ButtonContainer>
             </View>
-
-            <Text style={styles.text}>
-              {`${this.state.correctCount}/${this.state.totalCount}`}
-            </Text>
-          </SafeAreaView>
-          <Alert
-            correct={this.state.answerCorrect}
-            visible={this.state.answered}
-          />
-        </View>
+            <Card>
+              <CardItem>
+                <Text>{`${this.state.correctCount}/${this.state.totalCount}`}</Text>
+              </CardItem>
+            </Card>
+          </Content>
+        </Container>
       );
     } else {
       return (
-        <View
-          style={[
-            styles.container,
-            { backgroundColor: this.props.navigation.getParam("color") }
-          ]}
-        >
-          <Text> demo</Text>
-        </View>
+        <Container>
+          <Header>
+            <Left></Left>
+            <Body>
+              <Title>Quiz app</Title>
+            </Body>
+          </Header>
+          <Content>
+            <View>
+              <Text>Result</Text>
+            </View>
+          </Content>
+        </Container>
       );
     }
   }
 }
 
-export default Quiz;
+export default withNavigation(Quiz);
