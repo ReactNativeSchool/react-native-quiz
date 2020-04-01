@@ -1,9 +1,12 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createCompatNavigatorFactory } from "@react-navigation/compat";
+
 import QuizIndex from "./screens/QuizIndex";
 import Quiz from "./screens/Quiz";
 
-const MainStack = createStackNavigator({
+const MainStack = createCompatNavigatorFactory(createStackNavigator)({
   QuizIndex: {
     screen: QuizIndex,
     navigationOptions: {
@@ -23,4 +26,8 @@ const MainStack = createStackNavigator({
   }
 });
 
-export default createAppContainer(MainStack);
+export default () => (
+  <NavigationContainer>
+    <MainStack />
+  </NavigationContainer>
+);
