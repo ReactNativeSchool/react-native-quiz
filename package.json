@@ -8,22 +8,21 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/masked-view": "0.1.6",
-    "expo": "^37.0.0",
-    "react": "16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.0.tar.gz",
+    "@react-native-community/masked-view": "0.1.10",
+    "expo": "^38.0.0",
+    "react": "16.11.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
     "react-native-gesture-handler": "~1.6.0",
-    "react-native-reanimated": "~1.7.0",
-    "react-native-safe-area-context": "0.7.3",
-    "react-native-screens": "~2.2.0",
-    "react-navigation": "^4.3.7",
-    "react-navigation-stack": "^2.3.11"
+    "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
+    "react-navigation": "^4.4.0",
+    "react-navigation-stack": "^2.8.2"
   },
   "devDependencies": {
-    "babel-preset-expo": "^8.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-handlebarlabs": "^0.0.5",
-    "prettier": "^1.19.1"
+    "babel-preset-expo": "^8.2.3",
+    "eslint": "^7.4.0",
+    "eslint-config-handlebarlabs": "^0.0.6"
   },
   "private": true
 }
