@@ -24,88 +24,101 @@ const styles = StyleSheet.create({
   },
 });
 
-class Quiz extends React.Component {
-  state = {
-    correctCount: 0,
-    totalCount: this.props.route.params.questions.length,
-    activeQuestionIndex: 0,
-    answered: false,
-    answerCorrect: false,
-  };
+const initialState = {
+  activeQuestionIndex: 0,
+  correctCount: 0,
+  totalCount: 0,
+  answered: false,
+  answerCorrect: false,
+};
 
-  answer = (correct) => {
-    this.setState(
-      (state) => {
-        const nextState = { answered: true };
-
-        if (correct) {
-          nextState.correctCount = state.correctCount + 1;
-          nextState.answerCorrect = true;
-        } else {
-          nextState.answerCorrect = false;
-        }
-
-        return nextState;
-      },
-      () => {
-        setTimeout(() => this.nextQuestion(), 750);
-      }
-    );
-  };
-
-  nextQuestion = () => {
-    this.setState((state) => {
-      const nextIndex = state.activeQuestionIndex + 1;
-
-      if (nextIndex >= state.totalCount) {
-        return this.props.navigation.popToTop();
-      }
-
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "answer":
       return {
-        activeQuestionIndex: nextIndex,
-        answered: false,
+        ...state,
+        answered: true,
+        correctCount: action.correct
+          ? state.correctCount + 1
+          : state.correctCount,
+        answerCorrect: action.correct,
       };
-    });
+    case "nextQuestion":
+      return {
+        ...state,
+        answered: false,
+        activeQuestionIndex: state.activeQuestionIndex + 1,
+      };
+    default:
+      return state;
+  }
+};
+
+const useQuiz = ({ onComplete, questions = [] }) => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+
+  const question = questions[state.activeQuestionIndex];
+  const totalCount = questions.length;
+
+  const answerQuestion = (correct) => {
+    dispatch({ type: "answer", correct });
+    setTimeout(() => {
+      const nextIndex = state.activeQuestionIndex + 1;
+      if (nextIndex >= totalCount) {
+        onComplete();
+      } else {
+        dispatch({ type: "nextQuestion" });
+      }
+    }, 750);
   };
 
-  render() {
-    const questions = this.props.route.params.questions || [];
-    const question = questions[this.state.activeQuestionIndex];
+  return {
+    answerQuestion,
+    question,
+    totalCount,
+    correctCount: state.correctCount,
+    answered: state.answered,
+    answerCorrect: state.answerCorrect,
+  };
+};
 
-    return (
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: this.props.route.params.color },
-        ]}
-      >
-        <StatusBar barStyle="light-content" />
-        <SafeAreaView style={styles.safearea}>
-          <View>
-            <Text style={styles.text}>{question.question}</Text>
+export default ({ route, navigation }) => {
+  const {
+    question,
+    answerQuestion,
+    correctCount,
+    totalCount,
+    answerCorrect,
+    answered,
+  } = useQuiz({
+    questions: route.params.questions,
+    onComplete: () => {
+      console.log("calling");
+      navigation.pop();
+    },
+  });
 
-            <ButtonContainer>
-              {question.answers.map((answer) => (
-                <Button
-                  key={answer.id}
-                  text={answer.text}
-                  onPress={() => this.answer(answer.correct)}
-                />
-              ))}
-            </ButtonContainer>
-          </View>
+  return (
+    <View style={[styles.container, { backgroundColor: route.params.color }]}>
+      <StatusBar barStyle="light-content" />
+      <SafeAreaView style={styles.safearea}>
+        <View>
+          <Text style={styles.text}>{question?.question}</Text>
 
-          <Text style={styles.text}>
-            {`${this.state.correctCount}/${this.state.totalCount}`}
-          </Text>
-        </SafeAreaView>
-        <Alert
-          correct={this.state.answerCorrect}
-          visible={this.state.answered}
-        />
-      </View>
-    );
-  }
-}
+          <ButtonContainer>
+            {question?.answers.map((answer) => (
+              <Button
+                key={answer.id}
+                text={answer.text}
+                onPress={() => answerQuestion(answer.correct)}
+              />
+            ))}
+          </ButtonContainer>
+        </View>
 
-export default Quiz;
+        <Text style={styles.text}>{`${correctCount}/${totalCount}`}</Text>
+      </SafeAreaView>
+      <Alert correct={answerCorrect} visible={answered} />
+    </View>
+  );
+};
