@@ -14,10 +14,10 @@ export default ({ navigation }) => (
       name="Space"
       color="#36b1f0"
       onPress={() =>
-        navigation.navigate("Quiz", {
+        navigation.push("Quiz", {
           title: "Space",
           questions: spaceQuestions,
-          color: "#36b1f0"
+          color: "#36b1f0",
         })
       }
     />
@@ -25,10 +25,10 @@ export default ({ navigation }) => (
       name="Westerns"
       color="#799496"
       onPress={() =>
-        navigation.navigate("Quiz", {
+        navigation.push("Quiz", {
           title: "Westerns",
           questions: westernsQuestions,
-          color: "#799496"
+          color: "#799496",
         })
       }
     />
@@ -36,10 +36,10 @@ export default ({ navigation }) => (
       name="Computers"
       color="#49475B"
       onPress={() =>
-        navigation.navigate("Quiz", {
+        navigation.push("Quiz", {
           title: "Computers",
           questions: computerQuestions,
-          color: "#49475B"
+          color: "#49475B",
         })
       }
     />

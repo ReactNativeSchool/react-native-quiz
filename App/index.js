@@ -1,26 +1,33 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import QuizIndex from "./screens/QuizIndex";
 import Quiz from "./screens/Quiz";
 
-const MainStack = createStackNavigator({
-  QuizIndex: {
-    screen: QuizIndex,
-    navigationOptions: {
-      headerTitle: "Quizzes"
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: ({ navigation }) => ({
-      headerTitle: navigation.getParam("title"),
-      headerTintColor: "#fff",
-      headerStyle: {
-        backgroundColor: navigation.getParam("color"),
-        borderBottomColor: navigation.getParam("color")
-      }
-    })
-  }
-});
+const Stack = createStackNavigator();
 
-export default createAppContainer(MainStack);
+export default () => (
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="QuizIndex"
+        component={QuizIndex}
+        options={{
+          headerTitle: "Quizzes",
+        }}
+      />
+      <Stack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={({ route }) => ({
+          headerTitle: route.params.title,
+          headerTintColor: "#fff",
+          headerStyle: {
+            backgroundColor: route.params.color,
+          },
+        })}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
+);
